@@ -1,38 +1,119 @@
-.App {
-  text-align: center;
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+    align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.my-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.nav-bar {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.nav-items {
+    margin: 0 10px;
+    padding: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+    font-weight: 700;
+    font-size: 70px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h2 {
+    font-weight: 700;
+    font-size: 50px;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 37px;
+    margin-bottom: 20px;
+}
+
+section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+section.second > img {
+    width: 100%;
+}
+
+section.first > p {
+    margin: 10px 15%;
+} 
+
+section.third > p {
+    margin: 10px 20%;
+}
+
+.row {
+    align-items: center;
+}
+
+.reversed {
+    flex-direction: row-reverse;
+}
+
+.details {
+    width: 80%;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+section.sixth {
+    padding: 10%;
+}
+
+.my-3 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+section.sixth .card {
+    border-radius: 10px;
+    text-align: center;
+}
+
+section.eight > div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.follow > svg {
+    margin-left: 20px;
+}
+
+footer {
+    border-top: 1px solid #E5E5E5;
+    padding-top: 30px;
+}
+
+footer .row {
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+footer p {
+    font-size: 16px;
+}
+
+footer ul {
+    padding: 0;
+    list-style: none;
+}
+
+h5 {
+    font-weight: 700;
 }
