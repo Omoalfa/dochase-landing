@@ -11,6 +11,7 @@
 :root {
   --second: #EF283B;
   --range: 0%;
+  --ballborder: 1px solid #ef283b;
 }
 
 .brand-color {
@@ -26,6 +27,7 @@ input[type=range] {
   -webkit-appearance: none;
   /* margin: 18px 0; */
   width: 100%;
+  position: relative;
 }
 
 input[type=range]:before {
@@ -34,6 +36,7 @@ input[type=range]:before {
   width: var(--range);
   height: 10px;
   background: var(--second);
+  z-index: 0;
 }
 
 input[type=range]:focus {
@@ -48,15 +51,17 @@ input[type=range]::-webkit-slider-runnable-track {
   border: 0.5px solid #a8a8a8;
 }
 input[type=range]::-webkit-slider-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
+  border: var(--ballborder);
   height: 36px;
   width: 16px;
   border-radius: 3px;
-  background: #ffffff;
+  background: var(--trackball);
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -14px;
+  position: absolute;
+  z-index: 1;
+  left: calc(var(--range) - 8px);
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
   background: transparent;
@@ -70,13 +75,15 @@ input[type=range]::-moz-range-track {
   border: 0.5px solid #a8a8a8;
 }
 input[type=range]::-moz-range-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
+  border: var(--ballborder);
   height: 36px;
   width: 16px;
   border-radius: 3px;
-  background: #ffffff;
+  background: var(--trackball);
   cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  left: calc(var(--range) - 8px);
 }
 input[type=range]::-ms-track {
   width: 100%;
@@ -100,17 +107,26 @@ input[type=range]::-ms-fill-upper {
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 input[type=range]::-ms-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
+  border: var(--ballborder);
   height: 36px;
   width: 16px;
   border-radius: 3px;
-  background: #ffffff;
+  background: var(--trackball);
   cursor: pointer;
+  z-index: 1;
+  position: absolute;
+  left: calc(var(--range) - 8px);
 }
 input[type=range]:focus::-ms-fill-lower {
   background: transparent;
 }
 input[type=range]:focus::-ms-fill-upper {
   background: transparent;
+}
+.budget {
+  position: absolute;
+  left: var(--range);
+  bottom: -30px;
+  transform: translateX(-50%);
+  transition: none;
 }
