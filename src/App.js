@@ -1,8 +1,9 @@
-import { Card, CardBody, CardImg, CardTitle, Carousel, CarouselItem, Col, Container, Row } from 'reactstrap';
+import { Card, CardBody, CardImg, CardTitle, Carousel, CarouselItem, Col, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Row } from 'reactstrap';
 import NumberFormat from 'react-number-format';
 import './App.css';
 
 import Button from './components/Button'
+import { MenuFoldOutlined, CloseOutlined } from '@ant-design/icons'
 import { ReactComponent as Dochase } from './assets/Dochase.svg'
 import { ReactComponent as Open } from './assets/open-quote.svg';
 import { ReactComponent as Close } from './assets/close-quote.svg';
@@ -38,6 +39,11 @@ function App() {
   const [reach, setReach] = useState(7200000)
   const [price, setPrice] = useState(5000);
   const [index, setIndex] = useState(0);
+  const [showNav, setShowNav] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [showContact, setShowContact] = useState(false);
+
+  const toggle = () => setDropdownOpen(!dropdownOpen)
 
 
   useEffect(() => {
@@ -72,17 +78,31 @@ function App() {
       <Container fluid>
         <div className='header container'>
           <Dochase />
-          <div className='my-nav'>
+          <div className={`my-nav ${showNav ? 'show' : ''}`}>
             <ul className='nav-bar'>
-              <li className='nav-items'>Solutions</li>
-              <li className='nav-items'>How it works</li>
-              <li className='nav-items'>Publishers</li>
-              <li className='nav-items'>Company</li>
+              <li className='nav-items'><a href='/programatic-solutions.html'>Solutions</a></li>
+              <li className='nav-items'><a href='/advertiser.html'>How it works</a></li>
+              <li className='nav-items'><a href='/publisher.html'>Publishers</a></li>
+              <li className='nav-items'><a href='/about-us.html'>Company</a></li>
             </ul>
             <div>
-              <Button type='secondary' text='Sign up' />
-              <Button text='Login' />
+              <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+                <DropdownToggle caret>
+                  Signup
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem><a href='https://dashboard.dochase.com/register' target='_blank'>Advertiser Signup</a></DropdownItem>
+                  <DropdownItem><a href='https://monetize.dochase.com/#apply' target='_blank'>Publisher Signup</a></DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+              <a href='https://dashboard.dochase.com/index.aspx'><Button text='Login' /></a>
             </div>
+          </div>
+          <div className='hamburger'>
+            { 
+              showNav ? <CloseOutlined style={{fontSize: '35px'}} onClick={()=>setShowNav(false)} /> 
+              : <MenuFoldOutlined style={{fontSize: '35px'}} onClick={()=>setShowNav(true)} />
+            }
           </div>
         </div>
         <section className='first container text-center'>
@@ -104,51 +124,52 @@ across different sectors to deliver on their business needs</p>
           >
             <CarouselItem>
               <Row className='carousel-div'>
-                <Col sm='6' px-3>
+                <div className='col-6' px-3>
                   <Card>
                     <CardImg top src={accordione} alt='picture' />
                     <CardBody>
                       <CardTitle>Finance</CardTitle>
                       <p>See some case studies of our finance client</p>
-                      <Button text='Read more' />
+                      <a href='/case-studies.html'><Button text='Read more' /></a>
                     </CardBody>   
                   </Card>
-                </Col>
-                <Col sm='6' px-3>
+                </div>
+                <div className='col-6' px-3>
                   <Card>
                     <CardImg top src={accordiond} alt='picture' />
                     <CardBody>
                     <CardTitle>Sports Betting</CardTitle>
                       <p>See some case studies of our sports betting client</p>
-                      <Button text='Read more' />
+                      <a href='/case-studies.html'><Button text='Read more' /></a>
                     </CardBody>
                   </Card>
-                </Col>
+                </div>
               </Row>
-            </CarouselItem>
-            <CarouselItem>
+              </CarouselItem>
+              <CarouselItem>
               <Row className='carousel-div'>
-                <Col sm='6' px-3>
+                <div className='col-6' px-3>
                   <Card>
                     <CardImg top src={accordiong} alt='picture' />
                     <CardBody>
                       <CardTitle>Real Estate</CardTitle>
                       <p>See some case studies of our real estate client</p>
-                      <Button text='Read more' />
+                      <a href='/case-studies.html'><Button text='Read more' /></a>
                     </CardBody>
                   </Card>
-                </Col>
-                <Col sm='6' px-3>
+                </div>
+                <div className='col-6' px-3>
                   <Card>
                     <CardImg top src={accordionb} alt='picture' />
                     <CardBody>
                       <CardTitle>Sexual Health</CardTitle>
                       <p>See some case studies of our sexual health client</p>
-                      <Button text='Read more' />
+                      <a href='/case-studies.html'><Button text='Read more' /></a>
                     </CardBody>
                   </Card>
-                </Col>
+                </div>
               </Row>
+              
             </CarouselItem>
           </Carousel>
           <div className='carousel-control prev' onClick={previous}>
@@ -173,7 +194,7 @@ across different sectors to deliver on their business needs</p>
               <br /><br />
               We build a full-funnel advertising strategy running separate campaigns for your target audience at different stages of the customer journey which will drive your target audience right to the conversion stage without extra effort.
               </p>
-              <Button text='Speak to our Ad Strategists' />
+              <a href=''><Button text='Speak to our Ad Strategists' /></a>
             </Col>
             <Col md='6'>
               <img src={progress} alt='progress' />
@@ -185,19 +206,19 @@ across different sectors to deliver on their business needs</p>
               <p className='details'>
               Our programmatic platform has the best ad targeting capabilities to ensure clients reach the right audience, in the right place, at the right time. As part of your journey with us, you get in-depth easy to understand reports and analysis that takes your brand to where you want it to be.
               </p>
-              <Button text='Learn more' />
+              <a href='/programmatic-solutions.html'><Button text='Learn more' /></a>
             </Col>
             <Col md='6'>
               <img src={lady} alt='lady' />
             </Col>
           </Row>
           <Row>
-            <Col md='6'>
+            <Col md='6' className='margin-top'>
               <h3>Messaging SMS<br /> Email OTP</h3>
               <p className='details'>
               We enhance customer loyalty and retention by guaranteeing the delivery of messages across channels like SMS, emails and WhatsApp. Retrieve real-time reports for every message you send out.
               </p>
-              <Button text='Learn more' />
+              <a href='/programmatic-solutions.html#sms-tagging'><Button text='Learn more' /></a>
             </Col>
             <Col md='6'>
               <img src={email} alt='email' />
@@ -210,7 +231,7 @@ across different sectors to deliver on their business needs</p>
               Automate communication to improve customer engagement and retention. <br />
               Our chatbots are set up to interact with your customers as though they are interacting with your brand representatives.
               </p>
-              <Button text='Request for a demo' />
+              <a href='/dochase-chatbot.html'><Button text='Request for a demo' /></a>
             </Col>
             <Col md='6'>
               <img src={robot} alt='robot' />
@@ -218,7 +239,7 @@ across different sectors to deliver on their business needs</p>
           </Row>
         </section>
         <section className='container sixth text-center'>
-          <h2 className='my-3'>Advertise now and pay later</h2>
+          <h2 className='mb-3'>Advertise now and pay later</h2>
           <Row className='my-3'>
             <Col md='4'>
               <Card>
@@ -284,33 +305,80 @@ across different sectors to deliver on their business needs</p>
           <input type='range' min='0' max='30000' value={price} onChange={onChange} step='100' />
           <label className='budget'>$<NumberFormat displayType='text' value={price} thousandSeparator={true} /></label>
         </section>
+        <section className='container form text-center'>
+            <Button text='Contact Us' onClick={()=>setShowContact(!showContact)} />
+            {
+              showContact && <div>
+                <form method='POST' action='https://formspree.io/f/mnqwzjnj'>
+                  <div className='app-form-group'>
+                    <label>Name</label>
+                    <input type='text' name='name' />
+                  </div>
+                  <div className='app-form-group flex'>
+                    <div className='app-form-group'>
+                      <label>Email Address</label>
+                      <input type='email' name='email' />
+                    </div>
+                    <div className='app-form-group'>
+                      <label>Phone No.</label>
+                      <input type='tel' name='phone' />
+                    </div>
+                  </div>
+                  <div className='app-form-group'>
+                    <label>Enter Your Message</label>
+                    <textarea name='message'></textarea>
+                  </div>
+                  <Button text='Submit' />
+                </form>
+              </div>
+            }
+        </section>
         <div className='container'>
           <p className='follow'>Follow us <Facebook /> <Instagram /> <Linkedin /> <Twitter /> </p>
         </div>
         <footer className='container'>
-          <Row>
-            <Col md='3'>
+          <div className='footer-container'>
+            <div className='footer-inner wide'>
               <h5>Dochase Adx</h5>
               <p>Emerging market leader in business automation, chatbots, sentiment analysis and rich media</p>
-            </Col>
-            <Col md='3'>
-              <p>SOLUTIONS</p>
+            </div>
+            <div className='footer-inner'>
+            <p>SOLUTIONS</p>
               <ul>
-                <li>Click to WhatsApp</li>
-                <li>Click to Call</li>
-                <li>USSD</li>
+                <li><a href=''>Click to WhatsApp</a></li>
+                <li><a href=''>Click to Call</a></li>
+                <li><a href='/programmatic-solutions.html#click-to-ussd'>USSD</a></li>
               </ul>
-            </Col>
-            <Col md='3'>
-              <p>TECHNICAL INFO</p>
+            </div>
+            <div className='footer-inner'>
+            <p>PRODUCTS</p>
               <ul>
-                <li>Privacy policy</li>
-                <li>Terms and Conditions</li>
-                <li>Ad Quality</li>
+                <li><a href='https://dochase.com/dochase-chatbot.html'>Chatbot</a></li>
+                <li><a href='/rich-media.html'>Rich Media</a></li>
+                <li><a href='/sentimental-analysis.html'>Sentiment Analysis</a></li>
+                <li><a href='retain.dochase.co'>Retain</a></li>
+              </ul> 
+            </div>
+            <div className='footer-inner'>
+            <p>TECHNICAL INFO</p>
+              <ul>
+                <li><a href='/privacy-policy-2.html'>Privacy policy</a></li>
+                <li><a href='/tos.html'>Terms and Conditions</a></li>
+                <li><a href='adquality.html'>Ad Quality</a></li>
               </ul>
-            </Col>
-            <Col md='3'>
-              <p>CONTACT</p>
+            </div>
+            <div className='footer-inner d-none'></div>
+            <div className='footer-inner'>
+            <p>RESOURCES</p>
+              <ul>
+                <li><a href='https://dochase.com/case-studies.html'>Case Studies</a></li>
+                <li><a href='https://blog.dochase.come' target='_blank'>Blog</a></li>
+                <li><a href='/about-us.html'>About Us</a></li>
+                <li><a href='#clientele'>Our Clientele</a></li>
+              </ul>
+            </div>
+            <div className='footer-inner'>
+            <p>CONTACT</p>
               <p>Nigeria</p>
               <p>
                 <span>Address: </span>
@@ -324,29 +392,11 @@ across different sectors to deliver on their business needs</p>
                 <span>Email: </span>
                 <span>info@dochase.com</span>
               </p>
-            </Col>
-          </Row>
-          <Row>
-            <Col md='3'></Col>
-            <Col md='3'>
-              <p>PRODUCTS</p>
-              <ul>
-                <li>Chatbot</li>
-                <li>Rich Media</li>
-                <li>Sentiment Analysis</li>
-                <li>Retain</li>
-              </ul>
-            </Col>
-            <Col md='3'>
-              <p>RESOURCES</p>
-              <ul>
-                <li>Case Studies</li>
-                <li>Blog</li>
-                <li>About Us</li>
-                <li>Our Clientele</li>
-              </ul>
-            </Col>
-            <Col md='3'>
+              
+            </div>
+            <div className='footer-inner'>
+              <p></p>
+              <p></p>
               <p>United States</p>
               <p>
                 <span>Address: </span>
@@ -356,8 +406,9 @@ across different sectors to deliver on their business needs</p>
                 <span>Phone: </span>
                 <span>+1 732 788 357</span>
               </p>
-            </Col>
-          </Row>
+            </div>
+            <img src='https://r.dochase.com/adx-dir-d/action?nid=13&adv=3&adx_txn_id=[adx_txn_id]&payout=[adx_payout]' />
+          </div>
         </footer>
       </Container>
     </div>
