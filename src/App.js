@@ -407,7 +407,6 @@ across different sectors to deliver on their business needs</p>
                 <span>+1 732 788 357</span>
               </p>
             </div>
-            <img src='https://r.dochase.com/adx-dir-d/action?nid=13&adv=3&adx_txn_id=[adx_txn_id]&payout=[adx_payout]' />
           </div>
         </footer>
       </Container>
